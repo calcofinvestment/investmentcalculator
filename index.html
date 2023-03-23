@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;900&display=swap" rel="stylesheet">
+</head>
+<body class="body">
+	<style>
+	@media screen and (max-width: 2000px) {
+		.body {
+			background-image: url(/background);
+		}
+		.h1 {
+			background-color: rgb(90, 161, 96);
+			font-family: 'Montserrat', sans-serif;
+			font-size: 50px;
+			text-align: center;
+			color: white;
+		}
+
+		.container {
+			text-align: center;		
+		}
+
+		.h2 {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 40px;
+			text-align: center;
+			color:  rgb(90, 161, 96);
+		}
+
+		.h3 {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 30px;
+			text-align: center;
+			color:  rgb(90, 161, 96);
+		}
+
+		.text {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 20px;
+			color: black;
+		}
+
+		.percent {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 15px;
+			color: black;
+		}
+
+		.cash {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 15px;
+			color: black;
+		}
+
+		.container1 {
+			text-align: center;
+		}
+
+		.button {
+			margin-top: 5px;
+			font-family: 'Montserrat', sans-serif;
+			font-size: 30px;
+		}
+	} 
+
+	@media screen and (max-width: 720px) {
+		.body {
+			background-color: white;
+		}
+		.h1 {
+			background-color: rgb(90, 161, 96);
+			font-family: 'Montserrat', sans-serif;
+			font-size: 50px;
+			text-align: center;
+			color: white;
+		}
+
+		.container {
+			text-align: left;		
+		}
+
+		.h2 {
+			background-color: rgb(90, 161, 96) ;
+			font-family: 'Montserrat', sans-serif;
+			font-size: 40px;
+			text-align: center;
+			color: white;
+		}
+
+		.text {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 15px;
+			color: black;
+		}
+
+		.percent {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 15px;
+			color: black;
+		}
+
+		.cash {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 15px;
+			color: black;
+		}
+		 
+		.container1 {
+			text-align: center;
+		}
+
+		.button {
+			margin-top: 5px;
+			font-family: 'Montserrat', sans-serif;
+			font-size: 30px;
+			background-color: white;
+			color: black;
+		}
+	}
+	
+
+	</style>
+	<h1 class="h1">Калькулятор інвестицій</h1>
+
+	<div class="container">
+		<label for="total_cost" class="text">Загальна сума інвестування, грн: </label>
+		<input type="number" id="total_cost" name="total_cost" class="cash">
+	</div>
+
+	<div class="container">
+		<label for="years" class="text">Загальний термін інвестування, роки: </label>
+	    <select id="years" class="cash" onchange="years_change()">
+			<option value="1" class="cash">1</option>
+			<option value="2" class="cash">2</option>
+			<option value="3" class="cash">3</option>
+			<option value="4" class="cash">4</option>
+			<option value="5" class="cash">5</option>
+			<option value="6" class="cash">6</option>
+			<option value="7" class="cash">7</option>
+			<option value="8" class="cash">8</option>
+			<option value="9" class="cash">9</option>
+			<option value="10" class="cash">10</option>
+		</select>
+	</div>
+	
+	<h2 class="h2">Депозити</h2>
+	<div class="container">
+		<h3 class="h3">Гривня</h3>
+	</div>
+
+	<div class="container">
+			<input type="checkbox" id='cb_uah_privat' name="cb_uah_privat" onclick="check1()">
+			<label for="cb_uah_privat" class="text">ПриватБанк:</label>
+			<input type="text" name="p_uah_privat" id="p_uah_privat" class="percent">
+			<label for="p_uah_privat" class="text">%</label>
+			<br>
+			<input type="text" id='e_uah_privat' name="e_uah_privat" class="cash" disabled="disabled">
+			<label for="e_uah_privat" class="text">грн</label></div>
+	</div>
+
+	<div class="container">
+			<input type="checkbox" id="cb_uah_mono" name="cb_uah_mono" onclick="check2()">
+			<label for="cb_uah_mono" class="text">Monobank:</label>
+			<input type="text" name="p_uah_mono" id="p_uah_mono"  class="percent">
+			<label for="p_uah_mono" class="text">%</label>
+			<br>
+			<input type="text" id='e_uah_mono' name="e_uah_mono" class="cash" disabled="disabled">
+			<label for="e_uah_mono" class="text">грн</label> </div>
+	</div>
+	
+	<div class="container">
+			<input type="checkbox" id="cb_uah_oschad" name="cb_uah_oschad" onclick="check3()">
+			<label for="cb_uah_oschad" class="text">Ощадбанк:</label>
+			<input type="text" name="p_uah_oschad" id="p_uah_oschad"  class="percent">
+			<label for="p_uah_oschad" class="text">%</label>
+			<br>
+			<input type="text" id='e_uah_oschad' name="e_uah_oschad" class="cash" disabled="disabled">
+			<label for="e_uah_oschad" class="text">грн</label></div> 
+	</div>
+
+	<div>
+		<h3 class="h3">Долар США</h3>
+	</div>
+	
+	<div class="container">
+		<input type="checkbox" id="cb_usd_privat" name="cb_usd_privat" onclick="check4()">
+		<label for="cb_usd_privat" class="text">Приватбанк:</label>
+		<input type="text" name="p_usd_privat" id="p_usd_privat" class="percent" value="0.01">
+		<label for="p_usd_privat" class="text">%</label>
+		<br>
+		<input type="text" id='e_usd_privat' name="e_usd_privat" class="cash" disabled="disabled">
+		<label for="e_usd_privat" class="text">грн</label> </div> 
+	</div>
+
+	<div class="container">
+		<input type="checkbox" id="cb_usd_mono" name="cb_usd_mono" onclick="check5()">
+		<label for="cb_usd_mono" class="text">Monobank:</label>
+		<input type="text" name="p_usd_mono" id="p_usd_mono" class="percent" value="0.1">
+		<label for="p_usd_mono" class="text">%</label>
+		<br>
+		<input type="text" id='e_usd_mono' name="e_usd_mono" class="cash" disabled="disabled">
+		<label for="e_usd_mono" class="text">грн</label> </div>
+	<div>
+	
+	<div class="container">
+		<input type="checkbox" id="cb_usd_oschad" name="cb_usd_oschad" onclick="check6()">
+		<label for="cb_usd_oschad" class="text">Ощадбанк:</label>
+		<input type="text" name="p_uah_oschad" id="p_usd_oschad" class="percent" value="0.1">
+		<label for="p_usd_oschad" class="text">%</label>
+		<br>
+		<input type="text" id='e_usd_oschad' name="e_usd_oschad" class="cash" disabled="disabled">
+		<label for="e_usd_oschad" class="text">грн</label> </div> 
+	</div>
+
+	<div>
+		<h3 class="h3">Євро</h3>
+	</div>
+
+	<div class="container">
+		<input type="checkbox" id="cb_eur_privat" name="cb_eur_privat" onclick="check7()">
+		<label for="cb_eur_privat" class="text">Приватбанк:</label>
+		<input type="text" name="p_eur_privat" id="p_eur_privat" class="percent" value="0.01">
+		<label for="p_eur_privat" class="text">%</label>
+		<br>
+		<input type="text" id='e_eur_privat' name="e_eur_privat" class="cash" disabled="disabled">
+		<label for="e_eur_privat" class="text">грн</label> </div>  
+	</div>
+
+	<div class="container">
+		<input type="checkbox" id="cb_eur_mono" name="cb_eur_mono" onclick="check8()">
+		<label for="cb_eur_mono" class="text">Monobank:</label>
+		<input type="text" name="p_eur_mono" id="p_eur_mono" class="percent" value="0.1">
+		<label for="p_eur_mono" class="text">%</label> 
+		<br>
+		<input type="text" id='e_eur_mono' name="e_eur_mono" class="cash" disabled="disabled">
+		<label for="e_eur_mono" class="text">грн</label> </div> 
+	</div>
+
+	<div class="container">
+		<input type="checkbox" id="cb_eur_oschad" name="cb_eur_oschad" onclick="check9()">
+		<label for="cb_eur_oschad" class="text">Ощадбанк:</label>
+		<input type="text" name="p_eur_oschad" id="p_eur_oschad" class="percent" value="0.1">
+		<label for="p_eur_oschad" class="text">%</label>
+		<br>
+		<input type="text" id='e_eur_oschad' name="e_eur_oschad" class="cash" disabled="disabled">
+		<label for="e_eur_oschad" class="text">грн</label> </div> 
+	</div>
+
+	<div>
+		<h2 class="h2">Облігації</h2>
+	</div>
+
+	<div>
+		<h3 class="h3">Гривня</h3>
+	</div>
+
+	<div class="container">
+		<input type="checkbox" id="cb_uah_privat_bonds" name="cb_uah_privat_bonds" onclick="check10()">
+		<label for="cb_uah_privat_bonds" class="text">Приватбанк:</label>
+		<input type="text" name="p_uah_privat_bonds" value="16" id="p_uah_privat_bonds" class="percent">
+		<label for="p_uah_privat_bonds" class="text">%</label>
+		<br>
+		<input type="text" id='e_uah_privat_bonds' name="e_uah_privat_bonds" class="cash" disabled="disabled">
+		<label for="e_uah_privat_bonds" class="text">грн</label></div> 
+	</div>
+
+	<div class="container">
+		<input type="checkbox" id="cb_uah_mono_bonds" name="cb_uah_mono_bonds" onclick="check11()">
+		<label for="cb_uah_mono_bonds" class="text">Monobank:</label>
+		<input type="text" name="p_uah_mono_bonds" value="11.8" id="p_uah_mono_bonds" class="percent">
+		<label for="p_uah_mono_bonds" class="text">%</label> 
+		<br>
+		<input type="text" id='e_uah_mono_bonds' name="e_uah_mono_bonds" class="cash" disabled="disabled">
+		<label for="e_uah_mono_bonds" class="text">грн</label></div> 
+	</div>
+
+	<div class="container">
+		<input type="checkbox" id="cb_uah_ovdp" name="cb_uah_ovdp" onclick="check12()">
+		<label for="cb_uah_ovdp" class="text">ОВДП:</label>
+		<input type="text" name="p_uah_ovdp" value="11.5" id="p_uah_ovdp" class="percent">
+		<label for="e_uah_ovdp" class="text">%</label> 
+		<br>
+		<input type="text" id='e_uah_ovdp' name="e_uah_ovdp" class="cash" disabled="disabled">
+		<label for="e_uah_ovdp" class="text">грн</label></div>
+	</div>
+
+	<div>
+		<h3 class="h3">Долар США</label>
+	</div>
+
+	<div class="container">
+		<input type="checkbox" id="cb_usd_privat_bonds" name="cb_usd_privat_bonds" onclick="check13()">
+		<label for="cb_usd_privat_bonds" class="text">Приватбанк:</label>
+		<input type="text" name="p_usd_privat_bonds" value="3.71" id="p_usd_privat_bonds" class="percent">
+		<label for="p_usd_privat_bonds" class="text">%</label>
+		<br>
+		<input type="text" id='e_usd_privat_bonds' name="e_usd_privat_bonds" class="cash" disabled="disabled">
+		<label for="e_usd_privat_bonds" class="text">грн</label></div> 
+	</div>
+
+	<div class="container">
+		<input type="checkbox" id="cb_usd_mono_bonds" name="cb_usd_mono_bonds" onclick="check14()">
+		<label for="cb_usd_mono_bonds" class="text">Monobank:</label>
+		<input type="text" name="p_usd_mono_bonds"value="1.3" id="p_usd_mono_bonds" class="percent">
+		<label for="p_usd_mono_bonds" class="text">%</label>
+		<br>
+		<input type="text" id='e_usd_mono_bonds' name="e_usd_mono_bonds" class="cash" disabled="disabled">
+		<label for="e_usd_mono_bonds" class="text">грн</label></div> 
+	</div>
+
+	<div>
+		<h3 class="h3">Євро</h3>
+	</div>
+
+	<div class="container">
+		<input type="checkbox" id="cb_eur_privat_bonds" name="cb_eur_privat_bonds" onclick="check15()">
+		<label for="cb_eur_privat_eur_privat_bonds" class="text">Приватбанк:</label>
+		<input type="text" name="p_eur_privat_bonds" value="3.71" id="p_eur_privat_bonds" class="percent">
+		<label for="p_eur_privat_bonds" class="text">%</label>
+		<br>
+		<input type="text" id='e_eur_privat_bonds' name="e_eur_privat_bonds" class="cash" disabled="disabled">
+		<label for="e_eur_privat_bonds" class="text">грн</label></div> 
+	</div>
+
+	<div class="container">
+		<input type="checkbox" id="cb_eur_mono_bonds" name="cb_eur_mono_bonds" onclick="check16()">
+		<label for="cb_eur_mono_bonds" class="text">Monobank:</label>
+		<input type="text" name="p_eur_mono_bonds" value="1.3" id="p_eur_mono_bonds" class="percent">
+		<label for="p_eur_mono_bonds" class="text">%</label> 
+		<br>
+		<input type="text" id='e_eur_mono_bonds' name="e_eur_mono_bonds" class="cash" disabled="disabled">
+		<label for="e_eur_mono_bonds" class="text">грн</label></div>
+		</div>
+
+	<div>
+		<h2 class="h2">Валюта</h2>
+	</div>
+
+	<div class="container">
+		<input type="checkbox" id="cb_cash_usd" name="cb_cash_usd" onclick="check17()">
+		<label for="cb_cash_usd" class="text">Долар США: </label>
+		<input type="text" id='e_cash_usd' name="e_cash_usd" class="cash" disabled="disabled">
+		<label for="e_cash_usd" class="text">грн</label>
+	</div>
+
+	<div class="container">
+		<input type="checkbox" id="cb_cash_eur" name="cb_cash_eur" onclick="check18()">
+		<label for="cb_cash_eur" class="text">Євро: </label>
+		<input type="text" id='e_cash_eur' name="e_cash_eur" class="cash" disabled="disabled">
+		<label for="e_cash_eur" class="text">грн</label>
+	</div>
+
+	<div>
+		<h2 class="h2">Акції</h2>
+	</div>
+		
+	<div class="container">
+		<input type="checkbox" id="stonks" name="stonks" onclick="check19()">
+		<label for="stonks" class="text">Обрати</label>
+		<br>
+		<label for="price_stonks" class="text">Ціна однієї акції:</label>
+		<input type="text" id='price_stonks' name="price_stonks" class="cash"  disabled="disabled">
+		<label for="price_stonks" class="text">грн</label>
+		<br>
+		<label for="e_quantity" class="text">Кількість акцій:</label>
+		<input type="number" id="e_quantity" name="e_quantity" class="cash"  disabled="disabled">
+		<br>
+		<label for="divid" class="text">Дивіденди:</label>
+		<input type="text" id="e_divid" name="e_divid" class="cash"  disabled="disabled">
+		<label for="e_divid" class="text">грн</label>
+	</div>
+
+	<div>
+		<h2 class="h2">Криптовалюта</h2>
+	</div>
+		
+	<div class="container">
+		<input type="checkbox" id="cb_btc" name="cb_btc" onclick="check20()">
+		<label for="btc" class="text">Bitcoin(BTC):</label>
+		<input type="text" id='btc' name="btc" class="cash" disabled="disabled">
+		<label for="btc" class="text">грн</label>
+	<br>
+		<input type="checkbox" id="cb_eth" name="cb_eth" onclick="check21()">
+		<label for="eth" class="text">Ethereum(ETH):</label>
+		<input type="text" id='eth' name="eth" class="cash" disabled="disabled">
+		<label for="eth" class="text">грн</label>
+	<br>
+		<input type="checkbox" id="cb_bnb" name="cb_bnb" onclick="check22()">
+		<label for="bnb" class="text">Binance Coin(BNB):</label>
+		<input type="text" id='bnb' name="bnb" class="cash" disabled="disabled">
+		<label for="bnb" class="text">грн</label>
+	</div>
+
+	<div>
+		<h2 class="h2">Свій варіант інвестування</h2>
+	</div>
+	
+	<div class="container">
+		<input type="checkbox" id="cb_your_own" name="cb_your_own" onclick="check23()">
+		<label for="cb_your_own" class="text">Обрати</label>
+	<br>
+		<label for="e_your_own_per" class="text">Відсоткова ставка (%/рік):</label>
+		<input type="text" id='e_your_own_per' name="e_your_own_per" class="cash" disabled="disabled">
+	<br>
+		<label for="e_your_own" class="text">Сума інвестування:</label>
+		<input type="text" id='e_your_own' name="e_your_own" class="cash" disabled="disabled">
+		<label for="e_your_own" class="text">грн</label>
+	</div>
+
+	<div>
+		<h2 class="h2">Підрахувати</h2>
+	</div>
+	
+	<div class="container">
+		<label for="fnl_total_cost" class="text">Очікувана доходність інвестиційного портфеля:</label>
+		<input type="text" id="fnl_total_cost" name="fnl_total_cost" class="cash">
+		<label for="fnl_total_cost" class="text">грн</label>
+	<br>
+		<label for="ep" class="text">Прибуток:</label>
+		<input type="text" id='ep' name="ep" class="cash">
+		<label for="ep" class="text">грн</label>
+	</div>
+	
+	<div class="container1">
+		<button onclick="count()" class="button">Розрахувати</button>
+	</div>
+
+	<script>
+
+		function years_change() {
+			if (document.getElementById('years').value > 1){
+				document.getElementById('p_uah_privat').value = 14;
+				document.getElementById('p_uah_mono').value = 15;
+				document.getElementById('p_uah_oschad').value = 11.5;
+				confirm('Увага! Обираючи термін термін інвестування від двох років, гривневі депозити необхідно буде поповнювати кожні два роки. Погодитися?');
+			}
+			else {
+				document.getElementById('p_uah_privat').value = 9;
+				document.getElementById('p_uah_mono').value = 10;
+				document.getElementById('p_uah_oschad').value = 11.5;
+			}
+		}
+	
+		var  years = Number(document.getElementById("years").value);
+		if (years > 2) {
+			alert('не работает');
+		}
+
+		function check1() {
+			if (document.getElementById('cb_uah_privat').checked == true) {
+				document.getElementById('e_uah_privat').disabled = false;
+			}
+			else {
+				document.getElementById('e_uah_privat').disabled = true;
+			}
+		}
+		
+		function check2() {
+			if (document.getElementById('cb_uah_mono').checked == true) {
+				document.getElementById('e_uah_mono').disabled = false;
+			}
+			else {
+				document.getElementById('e_uah_mono').disabled = true;
+			}
+		}
+		
+		function check3() {
+			if (document.getElementById('cb_uah_oschad').checked == true) {
+				document.getElementById('e_uah_oschad').disabled = false;
+			}
+			else {
+				document.getElementById('e_uah_oschad').disabled = true;
+			}
+		}
+
+		function check4() {
+			if (document.getElementById('cb_usd_privat').checked == true) {
+				document.getElementById('e_usd_privat').disabled = false;
+			}
+			else {
+				document.getElementById('e_usd_privat').disabled = true;
+			}
+		}
+
+		function check5() {
+			if (document.getElementById('cb_usd_mono').checked == true) {
+				document.getElementById('e_usd_mono').disabled = false;
+			}
+			else {
+				document.getElementById('e_usd_mono').disabled = true;
+			}
+		}
+
+		function check6() {
+			if (document.getElementById('cb_usd_oschad').checked == true) {
+				document.getElementById('e_usd_oschad').disabled = false;
+			}
+			else {
+				document.getElementById('e_usd_oschad').disabled = true;
+			}
+		}
+
+		function check7() {
+			if (document.getElementById('cb_eur_privat').checked == true) {
+				document.getElementById('e_eur_privat').disabled = false;
+			}
+			else {
+				document.getElementById('e_eur_privat').disabled = true;
+			}
+		}
+
+		function check8() {
+			if (document.getElementById('cb_eur_mono').checked == true) {
+				document.getElementById('e_eur_mono').disabled = false;
+			}
+			else {
+				document.getElementById('e_eur_mono').disabled = true;
+			}
+		}
+
+		function check9() {
+			if (document.getElementById('cb_eur_oschad').checked == true) {
+				document.getElementById('e_eur_oschad').disabled = false;
+			}
+			else {
+				document.getElementById('e_eur_oschad').disabled = true;
+			}
+		}
+
+		function check10() {
+			if (document.getElementById('cb_uah_privat_bonds').checked == true) {
+				document.getElementById('e_uah_privat_bonds').disabled = false;
+			}
+			else {
+				document.getElementById('e_uah_privat_bonds').disabled = true;
+			}
+		}
+
+		function check11() {
+			if (document.getElementById('cb_uah_mono_bonds').checked == true) {
+				document.getElementById('e_uah_mono_bonds').disabled = false;
+			}
+			else {
+				document.getElementById('e_uah_mono_bonds').disabled = true;
+			}
+		}
+
+		function check12() {
+			if (document.getElementById('cb_uah_ovdp').checked == true) {
+				document.getElementById('e_uah_ovdp').disabled = false;
+			}
+			else {
+				document.getElementById('e_uah_ovdp').disabled = true;
+			}
+		}
+
+		function check13() {
+			if (document.getElementById('cb_usd_privat_bonds').checked == true) {
+				document.getElementById('e_usd_privat_bonds').disabled = false;
+			}
+			else {
+				document.getElementById('e_usd_privat_bonds').disabled = true;
+			}
+		}
+
+		function check14() {
+			if (document.getElementById('cb_usd_mono_bonds').checked == true) {
+				document.getElementById('e_usd_mono_bonds').disabled = false;
+			}
+			else {
+				document.getElementById('e_usd_mono_bonds').disabled = true;
+			}
+		}
+
+		function check15() {
+			if (document.getElementById('cb_eur_privat_bonds').checked == true) {
+				document.getElementById('e_eur_privat_bonds').disabled = false;
+			}
+			else {
+				document.getElementById('e_eur_privat_bonds').disabled = true;
+			}
+		}
+
+		function check16() {
+			if (document.getElementById('cb_eur_mono_bonds').checked == true) {
+				document.getElementById('e_eur_mono_bonds').disabled = false;
+			}
+			else {
+				document.getElementById('e_eur_mono_bonds').disabled = true;
+			}
+		}
+
+		function check17() {
+			if (document.getElementById('cb_cash_usd').checked == true) {
+				document.getElementById('e_cash_usd').disabled = false;
+			}
+			else {
+				document.getElementById('e_cash_usd').disabled = true;
+			}
+		}
+
+		function check18() {
+			if (document.getElementById('cb_cash_eur').checked == true) {
+				document.getElementById('e_cash_eur').disabled = false;
+			}
+			else {
+				document.getElementById('e_cash_eur').disabled = true;
+			}
+		}		
+
+		function check19() {
+			if (document.getElementById('stonks').checked == true) {
+				document.getElementById('price_stonks').disabled = false;
+				document.getElementById('e_quantity').disabled = false;
+				document.getElementById('e_divid').disabled = false;
+			}
+			else {
+				document.getElementById('price_stonks').disabled = true;
+				document.getElementById('e_quantity').disabled = true;
+				document.getElementById('e_divid').disabled = true;
+			}
+		}
+
+		function check20() {
+			if (document.getElementById('cb_btc').checked == true) {
+				document.getElementById('btc').disabled = false;
+			}
+			else {
+				document.getElementById('btc').disabled = true;
+			}
+		}		
+
+		function check21() {
+			if (document.getElementById('cb_eth').checked == true) {
+				document.getElementById('eth').disabled = false;
+			}
+			else {
+				document.getElementById('eth').disabled = true;
+			}
+		}
+
+		function check22() {
+			if (document.getElementById('cb_bnb').checked == true) {
+				document.getElementById('bnb').disabled = false;
+			}
+			else {
+				document.getElementById('bnb').disabled = true;
+			}
+		}
+
+		function check23() {
+			if (document.getElementById('cb_your_own').checked == true) {
+				document.getElementById('e_your_own_per').disabled = false;
+				document.getElementById('e_your_own').disabled = false;
+			}
+			else {
+				document.getElementById('e_your_own_per').disabled = true;
+				document.getElementById('e_your_own').disabled = true;
+			}
+		}
+
+		function count() {
+	
+			var total_cost = Number(document.getElementById('total_cost').value);
+			var  years = Number(document.getElementById("years").value);
+
+			var p_uah_privat = Number(document.getElementById('p_uah_privat').value);
+			var e_uah_privat = Number(document.getElementById('e_uah_privat').value);
+			var uah_privat;
+			uah_privat =  e_uah_privat * (p_uah_privat / 100 * 0.805 + 1) ** years;
+
+			var p_uah_mono = Number(document.getElementById('p_uah_mono').value);
+			var e_uah_mono = Number(document.getElementById('e_uah_mono').value);
+			var uah_mono;
+			uah_mono =  e_uah_mono * (p_uah_mono / 100 * 0.805 + 1) ** years;
+
+			var p_uah_oschad = Number(document.getElementById('p_uah_oschad').value);
+			var e_uah_oschad = Number(document.getElementById('e_uah_oschad').value);
+			var uah_oschad;
+			uah_oschad =  e_uah_oschad * (p_uah_oschad / 100 * 0.805 + 1) ** years;
+
+			var p_usd_privat = Number(document.getElementById('p_usd_privat').value);
+			var e_usd_privat = Number(document.getElementById('e_usd_privat').value);
+			var usd_privat;
+			usd_privat = e_usd_privat * (p_usd_privat / 100 * 0.805 + 1) ** years;
+
+			var p_usd_mono = Number(document.getElementById('p_usd_mono').value);
+			var e_usd_mono = Number(document.getElementById('e_usd_mono').value);
+			var usd_mono;
+			usd_mono = e_usd_mono * (p_usd_mono / 100 * 0.805 + 1) ** years;
+
+			var p_usd_oschad = Number(document.getElementById('p_usd_oschad').value);
+			var e_usd_oschad = Number(document.getElementById('e_usd_oschad').value);
+			var usd_oschad;
+			usd_oschad =  e_usd_oschad * (p_usd_oschad / 100 * 0.805 + 1) ** years;
+
+			var p_eur_privat = Number(document.getElementById('p_eur_privat').value);
+			var e_eur_privat = Number(document.getElementById('e_eur_privat').value);
+			var eur_privat;
+			eur_privat = e_eur_privat * (p_eur_privat / 100 * 0.805 + 1) ** years;
+
+			var p_eur_mono = Number(document.getElementById('p_eur_mono').value);
+			var e_eur_mono = Number(document.getElementById('e_eur_mono').value);
+			var eur_mono;
+			eur_mono = e_eur_mono * (p_eur_mono / 100 * 0.805 + 1) ** years;
+
+			var p_eur_oschad = Number(document.getElementById('p_eur_oschad').value);
+			var e_eur_oschad = Number(document.getElementById('e_eur_oschad').value);
+			var eur_oschad;
+			eur_oschad =  e_eur_oschad * (p_eur_oschad / 100 * 0.805 + 1) ** years;
+
+			var p_uah_privat_bonds = Number(document.getElementById('p_uah_privat_bonds').value);
+			var e_uah_privat_bonds = Number(document.getElementById('e_uah_privat_bonds').value);
+			var uah_privat_bonds;
+			uah_privat_bonds =  e_uah_privat_bonds * (p_uah_privat_bonds / 100 * 0.805 + 1) ** years;
+
+			var p_uah_mono_bonds = Number(document.getElementById('p_uah_mono_bonds').value);
+			var e_uah_mono_bonds = Number(document.getElementById('e_uah_mono_bonds').value);
+			var uah_mono_bonds;
+			uah_mono_bonds =  e_uah_mono_bonds * (p_uah_mono_bonds / 100 * 0.805 + 1) ** years;
+
+			var p_uah_ovdp = Number(document.getElementById('p_uah_ovdp').value);
+			var e_uah_ovdp = Number(document.getElementById('e_uah_ovdp').value);
+			var uah_ovdp;
+			uah_ovdp =  e_uah_ovdp * (p_uah_ovdp / 100 * 0.805 + 1) ** years;
+
+			var p_usd_privat_bonds = Number(document.getElementById('p_usd_privat_bonds').value);
+			var e_usd_privat_bonds = Number(document.getElementById('e_usd_privat_bonds').value);
+			var usd_privat_bonds;
+			usd_privat_bonds =  e_usd_privat_bonds * (p_usd_privat_bonds / 100 * 0.805 + 1) ** years;
+
+			var p_usd_mono_bonds = Number(document.getElementById('p_usd_mono_bonds').value);
+			var e_usd_mono_bonds = Number(document.getElementById('e_usd_mono_bonds').value);
+			var usd_mono_bonds;
+			usd_mono_bonds =  e_usd_mono_bonds * (p_usd_mono_bonds / 100 * 0.805 + 1) ** years;
+
+			var p_eur_privat_bonds = Number(document.getElementById('p_eur_privat_bonds').value);
+			var e_eur_privat_bonds = Number(document.getElementById('e_eur_privat_bonds').value);
+			var eur_privat_bonds;
+			eur_privat_bonds =  e_eur_privat_bonds * (p_eur_privat_bonds / 100 * 0.805 + 1) ** years;
+
+			var p_eur_mono_bonds = Number(document.getElementById('p_eur_mono_bonds').value);
+			var e_eur_mono_bonds = Number(document.getElementById('e_eur_mono_bonds').value);
+			var eur_mono_bonds;
+			eur_mono_bonds =  e_eur_mono_bonds * (p_eur_mono_bonds / 100 * 0.805 + 1) ** years;
+
+			var e_cash_usd = Number(document.getElementById('e_cash_usd').value);
+			var cash_usd; 
+			cash_usd = e_cash_usd / 40 * 43;
+			
+			var e_cash_eur = Number(document.getElementById('e_cash_eur').value);
+			var cash_eur; 
+			cash_eur = e_cash_eur / 40 * 43;
+			
+			var price_stonks = Number(document.getElementById('price_stonks').value);
+			var e_quantity = Number(document.getElementById('e_quantity').value);
+			var e_divid = Number(document.getElementById('e_divid').value);
+			var stonks;
+			stonks = e_quantity * years * ( e_divid / 0.25 );
+
+			var btc = Number(document.getElementById('btc').value);
+			var revenue_btc;
+			revenue_btc = btc * 1.2364 ** years;
+
+			var eth = Number(document.getElementById('eth').value);
+			var revenue_eth;
+			revenue_eth = eth * 1.2769 ** years;
+
+			var bnb = Number(document.getElementById('bnb').value);
+			var revenue_bnb;
+			revenue_bnb = bnb * 1.2852 ** years;
+
+			var e_your_own_per = Number(document.getElementById('e_your_own_per').value);
+			var e_your_own = Number(document.getElementById('e_your_own').value);
+			var your_own;
+			your_own = e_your_own * (e_your_own_per / 100 + 1) ** years;
+
+			final_total_cost = uah_privat + uah_mono + uah_oschad + usd_privat + usd_mono + usd_oschad + eur_privat + eur_mono + eur_oschad + uah_privat_bonds + uah_mono_bonds + uah_ovdp + usd_privat_bonds + usd_mono_bonds + eur_privat_bonds + eur_mono_bonds + cash_usd + cash_eur + stonks + revenue_btc + revenue_eth + revenue_bnb + your_own;
+			ep = final_total_cost - total_cost;
+			
+			var cost = e_uah_privat + e_uah_mono + e_uah_oschad + e_usd_privat + e_usd_mono + e_usd_oschad + e_eur_privat + e_eur_mono + e_eur_oschad + e_uah_privat_bonds + e_uah_mono_bonds + e_uah_ovdp + e_usd_privat_bonds + e_usd_mono_bonds + e_eur_privat_bonds + e_eur_mono_bonds + e_cash_usd + e_cash_eur + price_stonks * e_quantity + btc + eth + bnb + e_your_own;
+			 	
+
+			if (cost < total_cost) {
+				alert('Увага! Ви витратили не всю зазначену суму. Є ризик отримання збитків.');
+			}
+			
+
+			document.getElementById("fnl_total_cost").value = final_total_cost.toFixed(2);
+			document.getElementById("ep").value = ep.toFixed(2);
+			
+			console.log(revenue_btc);
+			//e_uah_privat.setAttribute("disabled", "disabled");
+		}	
+	</script>
+
+	
+</body>
+</html>
